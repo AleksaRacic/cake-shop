@@ -110,22 +110,18 @@ class NotifikacijeScreen extends StatelessWidget {
         children: [
           Text(
             title,
-            style: CustomTextStyles.titleLargeLatoPrimaryContainer.copyWith(
-              color: theme.colorScheme.primaryContainer,
-            ),
+            style: TextStyle(
+                color: theme.colorScheme.primaryContainer, fontSize: 20),
           ),
           Padding(
             padding: EdgeInsets.only(
               left: 5.h,
-              top: 5.v,
-              bottom: 2.v,
+              top: 2.v,
+              bottom: 1.v,
             ),
-            child: Text(
-              message,
-              style: theme.textTheme.bodyMedium!.copyWith(
-                color: theme.colorScheme.primaryContainer,
-              ),
-            ),
+            child: Text(message,
+                style: TextStyle(
+                    color: theme.colorScheme.primaryContainer, fontSize: 18)),
           ),
           Spacer(),
           CustomImageView(

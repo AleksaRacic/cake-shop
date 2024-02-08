@@ -24,9 +24,8 @@ class MyApp extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              stops: [0.0, 0.8, 0.9],
+              stops: [0.0, 1],
               colors: [
-                Color(0xFFFFFFFF),
                 Color(0xFFFFFFFF), // Your gradient's start color
                 Color(
                     0xFFF187B3), // Your gradient's middle color // This ensures the bottom 50 pixels are white

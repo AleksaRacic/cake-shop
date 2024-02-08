@@ -10,49 +10,49 @@ class KontaktScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBody: true,
-            extendBodyBehindAppBar: true,
-            appBar: CustomAppBar(),
-            body: Container(
-                color: Colors.transparent,
-                width: SizeUtils.width,
-                height: SizeUtils.height,
-                child: Container(
-                    width: double.maxFinite,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 11.v),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Text("Kontakt",
-                                  style: theme.textTheme.displayMedium)),
-                          Spacer(flex: 35),
-                          Padding(
-                              padding: EdgeInsets.only(left: 71.h),
-                              child: _buildFrame1(context,
-                                  calendarImage: ImageConstant.imgCall,
-                                  faksText: "TELEFON\n",
-                                  faksNumber: "03 5432 1234")),
-                          SizedBox(height: 48.v),
-                          Padding(
-                            padding: EdgeInsets.only(left: 71.h),
-                            child: _buildFrame1(context,
-                                calendarImage: ImageConstant.imgCalendar,
-                                faksText: "FAKS\n",
-                                faksNumber: "03 5432 1234"),
-                          ),
-                          SizedBox(height: 48.v),
-                          Padding(
-                              padding: EdgeInsets.only(left: 71.h),
-                              child: _buildFrame1(context,
-                                  calendarImage: ImageConstant.imgCalendar,
-                                  faksText: "E-MAIL\n",
-                                  faksNumber: "ram@etf.rs")),
-                          Spacer(flex: 64),
-                        ]))),
-            bottomNavigationBar: BottomBar()));
+      backgroundColor: Colors.transparent,
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(),
+      body: Container(
+          color: Colors.transparent,
+          child: Row(children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(height: 11.v),
+              Spacer(flex: 35),
+              Padding(
+                  padding: EdgeInsets.only(left: 71.h),
+                  child: _buildFrame1(context,
+                      calendarImage: ImageConstant.imgCall,
+                      faksText: "TELEFON\n",
+                      faksNumber: "03 5432 1234")),
+              SizedBox(height: 48.v),
+              Padding(
+                padding: EdgeInsets.only(left: 71.h),
+                child: _buildFrame1(context,
+                    calendarImage: ImageConstant.imgCalendar,
+                    faksText: "FAKS\n",
+                    faksNumber: "03 5432 1234"),
+              ),
+              SizedBox(height: 48.v),
+              Padding(
+                  padding: EdgeInsets.only(left: 71.h),
+                  child: _buildFrame1(context,
+                      calendarImage: ImageConstant.imgCalendar,
+                      faksText: "E-MAIL\n",
+                      faksNumber: "ram@etf.rs")),
+              Spacer(flex: 64),
+            ]),
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomImageView(
+                imagePath: "assets/images/mapa.png",
+                height: 279.v,
+                width: 264.h,
+              ),
+            ),
+          ])),
+    ));
   }
 
   /// Common widget

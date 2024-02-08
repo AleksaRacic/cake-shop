@@ -3,7 +3,8 @@ import 'dart:collection';
 import 'package:slatkizalogaj/model/torta.dart';
 
 class ShoppingCartService {
-  static final Map<Torta, int> _cart = LinkedHashMap<Torta, int>();
+  static Map<Torta, int> _cart = LinkedHashMap<Torta, int>();
+  static final List<Map<Torta, int>> _orders = [];
 
   // Add an object to the cart with a specified amount
   static void add(Torta object, int amount) {
@@ -16,6 +17,8 @@ class ShoppingCartService {
     }
   }
 
+  static get orders => _orders;
+
   // Remove an object from the cart
   static void remove(Torta torta) {
     _cart.remove(torta);
@@ -24,6 +27,15 @@ class ShoppingCartService {
   //reset cart
   static void resetCart() {
     _cart.clear();
+  }
+
+  static void addOrder() {
+    _orders.add(_cart);
+    _cart = LinkedHashMap<Torta, int>();
+  }
+
+  static removeOrder(int index) {
+    _orders.removeAt(index);
   }
 
   // Increase the amount of an object in the cart
@@ -39,6 +51,14 @@ class ShoppingCartService {
   static double calculateTotal() {
     double total = 0.0;
     _cart.forEach((key, value) {
+      total += key.price * value;
+    });
+    return total;
+  }
+
+  static claculateTotalOrder(int index) {
+    double total = 0.0;
+    _orders[index].forEach((key, value) {
       total += key.price * value;
     });
     return total;

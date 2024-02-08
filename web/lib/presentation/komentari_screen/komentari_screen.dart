@@ -8,6 +8,7 @@ import 'package:slatkizalogaj/widgets/app_bar/custom_app_bar.dart';
 import 'package:slatkizalogaj/widgets/bottom_navigation_bar.dart';
 import 'package:slatkizalogaj/widgets/custom_elevated_button.dart';
 import 'package:slatkizalogaj/widgets/custom_text_form_field.dart';
+import 'package:slatkizalogaj/widgets/drawer/drawer.dart';
 
 class KomentariScreen extends StatefulWidget {
   @override
@@ -39,23 +40,23 @@ class _CommentScreenState extends State<KomentariScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            extendBody: true,
-            extendBodyBehindAppBar: true,
-            resizeToAvoidBottomInset: false,
-            appBar: CustomAppBar(),
-            body: Column(children: [
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: CommentsService.comments.length,
-                      itemBuilder: (context, index) {
-                        final comment = CommentsService.comments[index];
-                        return CommentWidget(
-                            name: comment.username, comment: comment.text);
-                      })),
-              _buildColumn(context),
-              SizedBox(height: 70.v)
-            ]),
-            bottomNavigationBar: BottomBar()));
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
+      appBar: CustomAppBar(),
+      endDrawer: CustomDrawer(),
+      body: Column(children: [
+        Expanded(
+            child: ListView.builder(
+                itemCount: CommentsService.comments.length,
+                itemBuilder: (context, index) {
+                  final comment = CommentsService.comments[index];
+                  return CommentWidget(
+                      name: comment.username, comment: comment.text);
+                })),
+        _buildColumn(context),
+      ]),
+    ));
   }
 
   /// Section Widget
@@ -72,7 +73,7 @@ class _CommentScreenState extends State<KomentariScreen> {
               hintStyle: CustomTextStyles.titleMediumBlack900,
               textInputAction: TextInputAction.done,
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 21.h, vertical: 33.v)),
+                  EdgeInsets.symmetric(horizontal: 21.h, vertical: 12.v)),
           SizedBox(height: 14.v),
           Align(
               alignment: Alignment.centerRight,

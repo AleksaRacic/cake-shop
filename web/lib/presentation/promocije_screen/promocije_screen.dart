@@ -21,45 +21,32 @@ class PromocijeScreen extends StatelessWidget {
             appBar: CustomAppBar(),
             endDrawer: CustomDrawer(),
             body: Container(
-                width: SizeUtils.width,
-                height: SizeUtils.height,
-                child: Container(
-                    width: double.maxFinite,
-                    child: Column(children: [
-                      Text("Promocije", style: theme.textTheme.displayMedium),
-                      SizedBox(
-                          height: 600.v,
-                          width: double.maxFinite,
-                          child: Stack(
-                              alignment: Alignment.bottomCenter,
-                              children: [_buildPromocijaCard(context)]))
-                    ])))));
+                width: double.maxFinite,
+                margin: EdgeInsets.fromLTRB(50, 100, 50, 50),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0x22F68472),
+                ),
+                child: CarouselSlider(
+                    options:
+                        CarouselOptions(autoPlay: true, viewportFraction: 0.4),
+                    items: _buildPromocijaCard(context)))));
   }
 
   /// Section Widget
-  Widget _buildPromocijaCard(BuildContext context) {
-    return Align(
-        heightFactor: 0.2,
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-            padding: EdgeInsets.only(left: 12.h, top: 0.v, right: 12.h),
-            child: ListView.separated(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                separatorBuilder: (context, index) {
-                  return SizedBox(height: 43.v);
-                },
-                itemCount: TortaService.getRandomSize(),
-                itemBuilder: (context, index) {
-                  final torta = TortaService.getRandomTorta(index);
-                  return GestureDetector(
-                    onTap: () {
-                      print('Torta at $index was tapped.');
-                      TortaService.setSelectedTorta(torta);
-                      Navigator.pushNamed(context, AppRoutes.detaljiScreen);
-                    },
-                    child: PromocijacardItemWidget(torta: torta),
-                  );
-                })));
+  List<Widget> _buildPromocijaCard(BuildContext context) {
+    List<Widget> list = [];
+    for (int i = 0; i < TortaService.getRandomSize(); i++) {
+      final torta = TortaService.getRandomTorta(i);
+      list.add(GestureDetector(
+        onTap: () {
+          print('Torta at $i was tapped.');
+          TortaService.setSelectedTorta(torta);
+          Navigator.pushNamed(context, AppRoutes.detaljiScreen);
+        },
+        child: PromocijacardItemWidget(torta: torta),
+      ));
+    }
+    return list;
   }
 }

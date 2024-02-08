@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:slatkizalogaj/presentation/dodaj_akciju_screen/dodaj_prozivod_screen.dart';
+import 'package:slatkizalogaj/presentation/dodaj_proizvod_screen/dodaj_prozivod_screen.dart';
 import 'package:slatkizalogaj/presentation/login_screen/login_screen.dart';
+import 'package:slatkizalogaj/presentation/odobri_porudzbinu/odobri_porudzbinu.dart';
 import 'package:slatkizalogaj/presentation/promocije_screen/promocije_screen.dart';
 import 'package:slatkizalogaj/presentation/kola_ione_screen/kola_ione_screen.dart';
 import 'package:slatkizalogaj/presentation/torte_screen/torte_screen.dart';
@@ -46,6 +49,12 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
+  static const String dodajProizvodScreen = '/dodaj_proizvod_screen';
+
+  static const String dodajAkcijuScreen = '/dodaj_akciju_screen';
+
+  static const String odobriPorudzbinu = '/odobri_porudzbinu';
+
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
     promocijeScreen: (context) => PromocijeScreen(),
@@ -57,6 +66,9 @@ class AppRoutes {
     kontaktScreen: (context) => KontaktScreen(),
     korpaScreen: (context) => KorpaScreen(),
     notifikacijeScreen: (context) => NotifikacijeScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
+    appNavigationScreen: (context) => AppNavigationScreen(),
+    dodajProizvodScreen: (context) => DodajProizvodScreen(),
+    dodajAkcijuScreen: (context) => DodajAkcijuScreen(),
+    odobriPorudzbinu: (context) => OdobriPorudzbinu(),
   };
 }

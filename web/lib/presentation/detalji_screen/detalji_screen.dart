@@ -6,6 +6,7 @@ import 'package:slatkizalogaj/widgets/app_bar/custom_app_bar.dart';
 import 'package:slatkizalogaj/widgets/bottom_navigation_bar.dart';
 import 'package:slatkizalogaj/widgets/custom_elevated_button.dart';
 import 'package:slatkizalogaj/widgets/custom_outlined_button.dart';
+import 'package:slatkizalogaj/widgets/drawer/drawer.dart';
 
 class DetaljiScreen extends StatefulWidget {
   @override
@@ -18,72 +19,77 @@ class _CakeDetailPageState extends State<DetaljiScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scale = 0.8;
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBody: true,
-            extendBodyBehindAppBar: true,
-            appBar: CustomAppBar(),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 50.v),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildSeven(context),
-                      SizedBox(height: 30.v),
-                      Padding(
-                          padding: EdgeInsets.only(left: 32.h),
-                          child: Text(torta.description,
-                              style: CustomTextStyles
-                                  .titleLargeIBMPlexSansBlack900)),
-                      SizedBox(height: 36.v),
-                      Container(
-                          width: 82.h,
-                          margin: EdgeInsets.only(left: 41.h),
-                          child: Text(
-                              "Sastojci \n" +
-                                  torta.sastojci.replaceAll(", ", "\n"),
-                              maxLines: 7,
-                              overflow: TextOverflow.ellipsis,
-                              style: CustomTextStyles
-                                  .titleLargeIBMPlexSansBlack900)),
-                      SizedBox(height: 36.v),
-                      CustomElevatedButton(
-                          height: 42.v,
-                          width: 173.h,
-                          text: "Komentari",
-                          margin: EdgeInsets.only(left: 97.h),
-                          buttonStyle: CustomButtonStyles.fillPrimaryTL10,
-                          buttonTextStyle:
-                              CustomTextStyles.labelLargeManropeWhiteA700,
-                          onPressed: () {
-                            onTapKomentari(context);
-                          }),
-                      SizedBox(height: 39.v),
-                      _buildFrame(context),
-                      SizedBox(height: 18.v),
-                      CustomElevatedButton(
-                          onPressed: () {
-                            ShoppingCartService.add(torta, quantity);
-                            setState(() {
-                              quantity = 1;
-                            });
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('Dodano u korpu'),
-                              backgroundColor: Color(0xFFF187B3),
-                            ));
-                          },
-                          height: 42.v,
-                          width: 173.h,
-                          text: "Dodaj u korpu",
-                          margin: EdgeInsets.only(left: 102.h),
-                          buttonStyle: CustomButtonStyles.fillPrimaryTL10,
-                          buttonTextStyle:
-                              CustomTextStyles.labelLargeManropeWhiteA700),
-                      SizedBox(height: 5.v)
-                    ])),
-            bottomNavigationBar: BottomBar()));
+      backgroundColor: Colors.transparent,
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(),
+      endDrawer: CustomDrawer(),
+      body: Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Transform.scale(
+              scale: scale,
+              child: SingleChildScrollView(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    _buildSeven(context),
+                    SizedBox(height: 30.v),
+                    Padding(
+                        padding: EdgeInsets.only(left: 32.h),
+                        child: Text(torta.description,
+                            style: CustomTextStyles
+                                .titleLargeIBMPlexSansBlack900)),
+                    SizedBox(height: 36.v),
+                    Container(
+                        width: 82.h,
+                        margin: EdgeInsets.only(left: 41.h),
+                        child: Text(
+                            "Sastojci \n" +
+                                torta.sastojci.replaceAll(", ", "\n"),
+                            maxLines: 7,
+                            overflow: TextOverflow.ellipsis,
+                            style: CustomTextStyles
+                                .titleLargeIBMPlexSansBlack900)),
+                    SizedBox(height: 36.v),
+                    CustomElevatedButton(
+                        height: 42.v,
+                        width: 173.h,
+                        text: "Komentari",
+                        margin: EdgeInsets.only(left: 260.h),
+                        buttonStyle: CustomButtonStyles.fillPrimaryTL10,
+                        buttonTextStyle:
+                            CustomTextStyles.labelLargeManropeWhiteA700,
+                        onPressed: () {
+                          onTapKomentari(context);
+                        }),
+                    SizedBox(height: 39.v),
+                    _buildFrame(context),
+                    SizedBox(height: 18.v),
+                    CustomElevatedButton(
+                        onPressed: () {
+                          ShoppingCartService.add(torta, quantity);
+                          setState(() {
+                            quantity = 1;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Dodano u korpu'),
+                            backgroundColor: Color(0xFFF187B3),
+                          ));
+                        },
+                        height: 42.v,
+                        width: 173.h,
+                        text: "Dodaj u korpu",
+                        margin: EdgeInsets.only(left: 260.h),
+                        buttonStyle: CustomButtonStyles.fillPrimaryTL10,
+                        buttonTextStyle:
+                            CustomTextStyles.labelLargeManropeWhiteA700),
+                    SizedBox(height: 5.v)
+                  ])))),
+    ));
   }
 
   /// Section Widget
@@ -92,12 +98,12 @@ class _CakeDetailPageState extends State<DetaljiScreen> {
         alignment: Alignment.center,
         child: SizedBox(
             height: 156.v,
-            width: 357.h,
+            width: double.maxFinite,
             child: Stack(alignment: Alignment.bottomCenter, children: [
               CustomImageView(
-                  imagePath: ImageConstant.img38d5902ce335fe0455x356,
+                  imagePath: torta.image_path,
                   height: 155.v,
-                  width: 356.h,
+                  width: double.maxFinite.h,
                   radius: BorderRadius.circular(17.h),
                   alignment: Alignment.center),
               Align(

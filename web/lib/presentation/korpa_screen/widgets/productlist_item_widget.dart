@@ -95,20 +95,7 @@ class _CakeDetailPageState extends State<ProductlistItemWidget> {
                     width: 126.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomImageView(
-                          imagePath: ImageConstant.imgMinusSquarePink800,
-                          height: 24.adaptSize,
-                          width: 24.adaptSize,
-                          margin: EdgeInsets.symmetric(vertical: 8.v),
-                        ),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgPlusSquarePink800,
-                          height: 24.adaptSize,
-                          width: 24.adaptSize,
-                          margin: EdgeInsets.symmetric(vertical: 8.v),
-                        ),
-                      ],
+                      children: [Container()],
                     ),
                   ),
                   Padding(

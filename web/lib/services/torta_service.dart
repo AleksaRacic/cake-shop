@@ -11,12 +11,13 @@ class TortaService {
         description: "Cokoladna torta",
         tip: "TORTA",
         sastojci: "Cokolad, brasno, secer, jaja",
+        promocija: true,
         price: 100),
     Torta(
         image_path: "assets/images/img_38d5902ce335fe0_4.png",
         name: "Vocna torta",
         rating: "4.5",
-        description: "Vocna torta ima i banana",
+        description: "Vocna torta",
         tip: "TORTA",
         sastojci: "Voca, brasno, secer, jaja",
         price: 200.44),
@@ -24,7 +25,7 @@ class TortaService {
         image_path: "assets/images/img_38d5902ce335fe0_455x356.png",
         name: "Jagoda",
         rating: "4.6",
-        description: "Torta od jagoda sa punoo voca",
+        description: "Torta od jagoda",
         tip: "TORTA",
         sastojci: "Jagoda, brasno, secer, jaja",
         price: 300.44),
@@ -32,27 +33,54 @@ class TortaService {
         image_path: "assets/images/img_rectangle_19.png",
         name: "Krem torta",
         rating: "4.7",
-        description: "Krem torta jako je slatka",
+        description: "Torta je slatka",
         sastojci: "Krema, brasno, secer, jaja",
         tip: "TORTA",
+        promocija: true,
         price: 400.44),
     Torta(
         image_path: "assets/images/img_38d5902ce335fe0_4.png",
         name: "Tortica",
         sastojci: "Krema, brasno, secer, jaja",
         rating: "4.8",
-        description: "Tortica mala slatka",
+        description: "Tortica mala",
         tip: "TORTA",
         price: 500.44),
   ];
 
+  static addTorta(Torta torta) {
+    torte.add(torta);
+  }
+
+  static addKolac(Torta kolac) {
+    kolaci.add(kolac);
+  }
+
   static final List<Torta> kolaci = [
     Torta(
-        image_path: "assets/images/img_38d5902ce335fe0_4.png",
+        image_path: "assets/images/img_38d5902ce335fe0_1.png",
         name: "Kolacic",
         rating: "4.8",
         sastojci: "Krema, brasno, secer, jaja",
-        description: "Tortica mala slatka",
+        description: "Za slave",
+        promocija: true,
+        tip: "KOLAC",
+        price: 500.44),
+    Torta(
+        image_path: "assets/images/img_38d5902ce335fe0_2.png",
+        name: "Kolac2",
+        rating: "4.8",
+        sastojci: "Krema, brasno, secer, jaja",
+        description: "Za svadbe",
+        tip: "KOLAC",
+        promocija: true,
+        price: 500.44),
+    Torta(
+        image_path: "assets/images/img_38d5902ce335fe0_3.png",
+        name: "Kolac3",
+        rating: "4.8",
+        sastojci: "Krema, brasno, secer, jaja",
+        description: "Nemam inspiraciju",
         tip: "KOLAC",
         price: 500.44),
   ];
@@ -80,15 +108,17 @@ class TortaService {
   }
 
   static List<Torta> getRandomList() {
-    var random = new Random();
     List<Torta> randomTorte = [];
-    for (int i = 0; i < 2; i++) {
-      randomTorte.add(torte[random.nextInt(torte.length)]);
-    }
-    for (int i = 0; i < 2; i++) {
-      randomTorte.add(kolaci[random.nextInt(kolaci.length)]);
-    }
-    randomTorte.shuffle();
+    torte.forEach((element) {
+      if (element.promocija) {
+        randomTorte.add(element);
+      }
+    });
+    kolaci.forEach((element) {
+      if (element.promocija) {
+        randomTorte.add(element);
+      }
+    });
     return randomTorte;
   }
 

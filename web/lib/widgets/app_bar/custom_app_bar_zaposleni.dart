@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:slatkizalogaj/core/app_export.dart';
 import 'package:slatkizalogaj/model/user.dart';
+import 'package:slatkizalogaj/presentation/dodaj_akciju_screen/dodaj_prozivod_screen.dart';
 import 'package:slatkizalogaj/services/state_service.dart';
 import 'package:slatkizalogaj/services/user_service.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  CustomAppBar({
+class CustomAppBarZaposleni extends StatelessWidget
+    implements PreferredSizeWidget {
+  CustomAppBarZaposleni({
     Key? key,
   }) : super(key: key);
 
@@ -43,31 +45,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               SizedBox(width: 20),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.promocijeScreen);
+                  Navigator.pushNamed(context, AppRoutes.dodajProizvodScreen);
                 },
-                child: Text('Promocije',
+                child: Text('Dodaj proizvod',
                     style: TextStyle(color: Color(0xFF644430))),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.torteScreen);
+                  Navigator.pushNamed(context, AppRoutes.dodajAkcijuScreen);
                 },
-                child:
-                    Text('Torte', style: TextStyle(color: Color(0xFF644430))),
+                child: Text('Dodaj Akciju',
+                    style: TextStyle(color: Color(0xFF644430))),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.kolaIoneScreen);
+                  Navigator.pushNamed(context, AppRoutes.odobriPorudzbinu);
                 },
-                child:
-                    Text('Kolači', style: TextStyle(color: Color(0xFF644430))),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.kontaktScreen);
-                },
-                child:
-                    Text('Kontakt', style: TextStyle(color: Color(0xFF644430))),
+                child: Text('Odobri Porudzbinu',
+                    style: TextStyle(color: Color(0xFF644430))),
               ),
             ],
           ),
@@ -77,12 +72,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 StateService.setState('notification');
                 Scaffold.of(context).openEndDrawer();
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.shopping_cart, color: Color(0xFF644430)),
-              onPressed: () {
-                onTapHelp(context);
               },
             ),
             Padding(

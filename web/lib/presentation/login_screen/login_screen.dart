@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slatkizalogaj/core/app_export.dart';
+import 'package:slatkizalogaj/model/user.dart';
 import 'package:slatkizalogaj/widgets/custom_elevated_button.dart';
 import 'package:slatkizalogaj/widgets/custom_text_form_field.dart';
 
@@ -106,7 +107,11 @@ class LoginScreen extends StatelessWidget {
     bool loginSuccessful = UserService.login(username, password);
 
     if (loginSuccessful) {
-      Navigator.pushNamed(context, AppRoutes.promocijeScreen);
+      if (UserService.currentUser.isCustomer) {
+        Navigator.pushNamed(context, AppRoutes.promocijeScreen);
+      } else {
+        Navigator.pushNamed(context, AppRoutes.dodajProizvodScreen);
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
